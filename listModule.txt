@@ -1,0 +1,61 @@
+Backend:
+CMS
+Microbook Module
+Categories Module
+Topic Module 
+Book request module
+Business Rule module 
+Basic user report 
+Basic payment report
+API
+Basic tracking module
+Advanced tracking Integration
+Integrate with Saola Insights
+Authentication
+Integrate with Facebook Account kit
+Integrate with facebook oAuthen
+Payment 
+Integrate with Momo
+Integrate with Napas
+Billing Integration system
+Integrate with Chargebee
+Search Engine
+Storage/CDN Integration system
+VegaCDN integration
+Social Integration system
+Notification Hub
+Streaming System
+Wowza Streaming System
+DRM integration 
+Integration with Saola DRM
+
+
+Client Features:
+For Mobile
+Login/signup
+Menu
+Homepage
+Library
+Discover
+Audio player
+Text reader
+Payment 
+Notification
+Setting
+Integration 
+Facebook Analytics
+Crashlytics
+Firebase analytics
+Saola insights
+Saola DRM
+
+
+For web:
+Landing page
+Login/signup
+Payment
+Internet Banking
+Credit Card
+Momo
+Bank transfer
+Setting
