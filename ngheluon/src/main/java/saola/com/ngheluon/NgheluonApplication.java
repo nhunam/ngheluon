@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class NgheluonApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(NgheluonApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(NgheluonApplication.class, args);
+  }
 
 }
