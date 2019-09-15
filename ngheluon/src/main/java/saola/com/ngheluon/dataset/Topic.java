@@ -14,6 +14,15 @@ public class Topic {
 	@Column(name = "id")
 	private String id;
 	
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "created")
+	private long created;
+	
+	@Column(name = "updated")
+	private long updated;
+	
 	public String getId() {
 		return id;
 	}
@@ -46,14 +55,7 @@ public class Topic {
 		this.updated = updated;
 	}
 
-	@Column(name = "name")
-	private String name;
 	
-	@Column(name = "created")
-	private long created;
-	
-	@Column(name = "updated")
-	private long updated;
 	
 
 }
