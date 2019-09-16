@@ -11,7 +11,7 @@
     </preConditions>
     <!-- User -->
     <createTable tableName="users">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_id"/>
       </column>
       <column name="created" type="bigint"/>
@@ -25,7 +25,7 @@
     </createTable>
     <!-- Categories -->
     <createTable tableName="categories">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_category_id"/>
       </column>
       <column name="created" type="bigint"/>
@@ -35,7 +35,7 @@
     </createTable>
     <!-- Author -->
     <createTable tableName="authors">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_author_id"/>
       </column>
       <column name="created" type="bigint"/>
@@ -45,7 +45,7 @@
     </createTable>
     <!-- Topic -->
         <createTable tableName="topics">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_topic_id"/>
       </column>
       <column name="created" type="bigint"/>
@@ -54,7 +54,7 @@
     </createTable>
     <!-- Highlight -->
     <createTable tableName="highlights">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_highlight_id"/>
       </column>
       <column name="created" type="bigint"/>
@@ -66,7 +66,7 @@
     </createTable>
     <!-- Book -->
     <createTable tableName="books">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_book_id"/>
       </column>
       <column name="created" type="bigint"/>
@@ -75,7 +75,7 @@
       <column name="synopsis" type="text"/>
       <column name="helper" type="text"/>
       <column name="isbn" type="VARCHAR(50)"/>
-      <column name="author_id" type="UUID">
+      <column name="author_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_author_book" references="authors(id)"/>
       </column>
       <column name="thumb" type="text"/>
@@ -88,7 +88,7 @@
     </createTable>
     <!-- Category book -->
     <createTable tableName="category_books">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_category_book_id"/>
       </column>
       <column name="created" type="bigint"/>
@@ -97,60 +97,60 @@
       <column name="content" type="text"/>
       <column name="file" type="text"/>
       <column name="order" type="int"/>
-      <column name="book_id" type="UUID">
+      <column name="book_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_book_category_book" references="books(id)"/>
       </column>
     </createTable>
     <!-- Chapter -->
     <createTable tableName="chapters">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_chapter_id"/>
       </column>
       <column name="created" type="bigint"/>
       <column name="updated" type="bigint"/>
-      <column name="book_id" type="UUID">
+      <column name="book_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_book_chapter" references="books(id)"/>
       </column>
     </createTable>
     <!-- Topic book -->
     <createTable tableName="topic_books">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_topic_book_id"/>
       </column>
       <column name="created" type="bigint"/>
       <column name="updated" type="bigint"/>
-      <column name="topic_id" type="UUID">
+      <column name="topic_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_topic_topic_book" references="topics(id)"/>
       </column>
-      <column name="book_id" type="UUID">
+      <column name="book_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_book_topic_book" references="books(id)"/>
       </column>
     </createTable>
     <!-- Highlight book -->
     <createTable tableName="highlight_books">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_highlight_book_id"/>
       </column>
       <column name="created" type="bigint"/>
       <column name="updated" type="bigint"/>
-      <column name="highlight_id" type="UUID">
+      <column name="highlight_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_highlight_highlight_book" references="highlights(id)"/>
       </column>
-      <column name="book_id" type="UUID">
+      <column name="book_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_book_highlight_book" references="books(id)"/>
       </column>
     </createTable>
     <!-- Library -->
     <createTable tableName="libraries">
-      <column name="id" type="UUID">
+      <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_library_id"/>
       </column>
       <column name="created" type="bigint"/>
       <column name="updated" type="bigint"/>
-      <column name="user_id" type="UUID">
+      <column name="user_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_user_library" references="users(id)"/>
       </column>
-      <column name="book_id" type="UUID">
+      <column name="book_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_book_libary" references="books(id)"/>
       </column>
       <column name="status" type="text"/>
