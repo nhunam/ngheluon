@@ -19,13 +19,12 @@ public class BaseModel implements Serializable {
   private Long created;
   private Long updated;
 
-  public BaseModel() {
-    this.id = UUID.randomUUID().toString();
-  }
-
   @PrePersist
   protected void prePersist() {
     long currentTime = System.currentTimeMillis();
+    if (null == this.id || "".equals(this.id)) {
+      this.id = UUID.randomUUID().toString();
+    }
     if (null == this.created) {
       setCreated(currentTime);
     }
