@@ -8,31 +8,31 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import saola.com.ngheluon.dataset.Book;
-import saola.com.ngheluon.repository.BookRepository;
-import saola.com.ngheluon.service.BookService;
+import saola.com.ngheluon.dataset.User;
+import saola.com.ngheluon.repository.UserRepository;
+import saola.com.ngheluon.service.UserService;
 
 @Service
-public class BookServiceImpl implements BookService {
+public class UserServiceImpl implements UserService {
   @Autowired
-  BookRepository repository;
+  UserRepository repository;
 
   @Override
-  public List<Book> findAll(Pageable pageRequest) {
-    Page<Book> pagedData = repository.findAll(pageRequest);
+  public List<User> findAll(Pageable pageRequest) {
+    Page<User> pagedData = repository.findAll(pageRequest);
     return pagedData.getContent();
   }
 
-  public Book findById(String id) {
+  public User findById(String id) {
     return repository.findById(id).get();
   }
 
-  public Book save(Book entity) {
+  public User save(User entity) {
     return repository.save(entity);
   }
 
-  public Book update(String id, Book entity) {
-    Optional<Book> existed = repository.findById(id);
+  public User update(String id, User entity) {
+    Optional<User> existed = repository.findById(id);
     if (!existed.isEmpty()) {
 
     }
