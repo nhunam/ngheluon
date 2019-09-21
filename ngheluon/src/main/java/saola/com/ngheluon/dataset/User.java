@@ -15,7 +15,7 @@ import lombok.Setter;
 @Table(name = "users")
 public class User extends BaseModel {
   private static final long serialVersionUID = 1L;
-  private String phone
+  private String phone;
   private String name;
   private String chargebee_id;
   private long time_expired;

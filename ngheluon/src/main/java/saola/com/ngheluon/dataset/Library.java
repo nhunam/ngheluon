@@ -11,8 +11,8 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "librarys")
-@Table(name = "librarys")
+@Entity(name = "libraries")
+@Table(name = "libraries")
 public class Library extends BaseModel {
   private static final long serialVersionUID = 1L;
   private long user_id;
