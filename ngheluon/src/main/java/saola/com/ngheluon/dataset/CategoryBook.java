@@ -1,6 +1,8 @@
 package saola.com.ngheluon.dataset;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +17,11 @@ import lombok.Setter;
 @Table(name = "category_books")
 public class CategoryBook extends BaseModel {
   private static final long serialVersionUID = 1L;
-  private long topic_id;
-  private long book_id;
+  private String topic_id;
+  private String book_id;
+  
+  @ManyToOne
+  @JoinColumn(name = "category_id")
+  private Category category;
+  
 }

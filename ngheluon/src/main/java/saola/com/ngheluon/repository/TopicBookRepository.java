@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import saola.com.ngheluon.dataset.TopicBook;
 
-public interface TopicBookRepository extends JpaRepository<Author, String> {
+public interface TopicBookRepository extends JpaRepository<TopicBook, String> {
 
 }
