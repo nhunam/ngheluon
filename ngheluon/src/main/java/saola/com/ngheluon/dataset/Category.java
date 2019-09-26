@@ -22,6 +22,6 @@ public class Category extends BaseModel {
   private String title;
   private String description;
   
-  @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-  private Set<CategoryBook> categoryBooks;
+//  @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+//  private Set<CategoryBook> categoryBooks;
 }

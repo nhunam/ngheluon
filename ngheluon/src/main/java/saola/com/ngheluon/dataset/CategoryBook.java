@@ -16,12 +16,12 @@ import lombok.Setter;
 @Entity(name = "category_books")
 @Table(name = "category_books")
 public class CategoryBook extends BaseModel {
-  private static final long serialVersionUID = 1L;
-  private String topic_id;
+  private static long serialVersionUID = 1L;
+  private String category_id;
   private String book_id;
   
-  @ManyToOne
-  @JoinColumn(name = "category_id")
-  private Category category;
+//  @ManyToOne
+//  @JoinColumn(name = "category_id")
+//  private Category category;
   
 }

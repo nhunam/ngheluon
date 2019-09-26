@@ -27,14 +27,15 @@ public class TopicController {
   @Autowired
   public TopicService service;
 
-  @GetMapping()
+  @GetMapping(produces = "application/json; charset=UTF-8")
   public List<Topic> findAll(@Nullable Pageable pageble) {
     return service.findAll(pageble);
   }
 
   @GetMapping("/{id}")
   public ResponseEntity<Topic> find(@PathVariable String id) {
-    return ResponseEntity.ok(service.findById(id));
+    //return ResponseEntity.ok(service.findById(id));
+	  return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
   }
 
   @PostMapping()
