@@ -11,11 +11,10 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "authors")
-@Table(name = "authors")
-public class Author extends BaseModel {
-  private static long serialVersionUID = 1L;
-  private String name;
-  private String description;
-  
+@Entity(name = "libraries")
+@Table(name = "libraries")
+public class Library extends BaseModel {
+  private static final long serialVersionUID = 1L;
+  private long user_id;
+  private long book_id;
 }

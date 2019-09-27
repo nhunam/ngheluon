@@ -2,8 +2,8 @@ package saola.com.ngheluon.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import saola.com.ngheluon.dataset.Book;
-import saola.com.ngheluon.service.BookService;
+import saola.com.ngheluon.dataset.Category;
+import saola.com.ngheluon.service.CategoryService;
 
 import java.util.List;
 
@@ -21,29 +21,29 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController(value = "books")
-@RequestMapping("/api/books")
-public class BookController {
+@RestController(value = "categorys")
+@RequestMapping("/api/categorys")
+public class CategoryController {
   @Autowired
-  public BookService service;
+  public CategoryService service;
 
   @GetMapping()
-  public List<Book> findAll(@Nullable Pageable pageble) {
+  public List<Category> findAll(@Nullable Pageable pageble) {
     return service.findAll(pageble);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Book> find(@PathVariable String id) {
+  public ResponseEntity<Category> find(@PathVariable String id) {
     return ResponseEntity.ok(service.findById(id));
   }
 
   @PostMapping()
-  public ResponseEntity<Book> add(@Valid @RequestBody Book entity) {
+  public ResponseEntity<Category> add(@Valid @RequestBody Category entity) {
     return ResponseEntity.status(HttpStatus.CREATED).body(service.save(entity));
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Book> update(@PathVariable String id, @Valid @RequestBody Book entity) {
+  public ResponseEntity<Category> update(@PathVariable String id, @Valid @RequestBody Category entity) {
     return ResponseEntity.ok(service.update(id, entity));
   }
 }

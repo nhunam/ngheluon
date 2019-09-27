@@ -72,6 +72,7 @@
       <column name="created" type="bigint"/>
       <column name="updated" type="bigint"/>
       <column name="title" type="text"/>
+      <column name="time" type="bigint"/>
       <column name="synopsis" type="text"/>
       <column name="helper" type="text"/>
       <column name="isbn" type="VARCHAR(50)"/>
@@ -93,10 +94,9 @@
       </column>
       <column name="created" type="bigint"/>
       <column name="updated" type="bigint"/>
-      <column name="synopsis" type="text"/>
-      <column name="content" type="text"/>
-      <column name="file" type="text"/>
-      <column name="order" type="int"/>
+      <column name="category_id" type="VARCHAR(36)">
+      	<constraints foreignKeyName="fk_category_category_book" references="categories(id)"/>
+      </column>	
       <column name="book_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_book_category_book" references="books(id)"/>
       </column>
@@ -106,8 +106,12 @@
       <column name="id" type="VARCHAR(36)">
         <constraints nullable="false" primaryKey="true" primaryKeyName="pk_chapter_id"/>
       </column>
+      <column name="synopsis" type="text"/>
+      <column name="content" type="text"/>
+      <column name="file" type="text"/>
       <column name="created" type="bigint"/>
       <column name="updated" type="bigint"/>
+      <column name="order" type="text"/>
       <column name="book_id" type="VARCHAR(36)">
         <constraints foreignKeyName="fk_book_chapter" references="books(id)"/>
       </column>

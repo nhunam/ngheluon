@@ -11,11 +11,14 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "authors")
-@Table(name = "authors")
-public class Author extends BaseModel {
-  private static long serialVersionUID = 1L;
+@Entity(name = "users")
+@Table(name = "users")
+public class User extends BaseModel {
+  private static final long serialVersionUID = 1L;
+  private String phone;
   private String name;
-  private String description;
-  
+  private String chargebee_id;
+  private long time_expired;
+  private String sub_id;
+  private String token;
 }
