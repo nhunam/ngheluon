@@ -18,6 +18,7 @@ public class BaseModel implements Serializable {
   private String id;
   private Long created;
   private Long updated;
+  private Boolean disabled;
 
   @PrePersist
   protected void prePersist() {
