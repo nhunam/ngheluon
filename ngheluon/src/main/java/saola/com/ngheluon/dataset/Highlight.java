@@ -18,5 +18,5 @@ public class Highlight extends BaseModel {
   private String title;
   private String description;
   private String thumb;
-  private int total_book;
+  private Integer totalBook;
 }

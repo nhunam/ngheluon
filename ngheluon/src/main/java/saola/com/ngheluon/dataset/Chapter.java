@@ -1,6 +1,10 @@
 package saola.com.ngheluon.dataset;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +22,9 @@ public class Chapter extends BaseModel {
   private String synopsis;
   private String content;
   private String file;
-  private String order;
-  private long book_id;
+  @Column(name = "\"order\"")
+  private Long order;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "book_id")
+  private Book book;
 }

@@ -15,7 +15,6 @@ import lombok.Setter;
 @Table(name = "highlight_books")
 public class HighlightBook extends BaseModel {
   private static final long serialVersionUID = 1L;
-  /* TODO */
   private long highlight_id;
   private long book_id;
 }
