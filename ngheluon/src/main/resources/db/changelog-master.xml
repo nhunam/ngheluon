@@ -7,4 +7,5 @@
 		<include file="./changelog/001-init-db.xml" relativeToChangelogFile="true"/>
 		<include file="./changelog/002-add-disabled.xml" relativeToChangelogFile="true"/>
 		<include file="./changelog/003-change-order-type.xml" relativeToChangelogFile="true"/>
+		<include file="./changelog/004-add-title-chapter.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
