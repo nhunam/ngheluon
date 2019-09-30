@@ -27,4 +27,5 @@ public class Chapter extends BaseModel {
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "book_id")
   private Book book;
+  private String title;
 }
