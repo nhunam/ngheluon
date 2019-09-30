@@ -23,7 +23,7 @@ public class Chapter extends BaseModel {
   private String content;
   private String file;
   @Column(name = "\"order\"")
-  private Long order;
+  private Integer order;
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "book_id")
   private Book book;

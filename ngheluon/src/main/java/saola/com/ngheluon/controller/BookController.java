@@ -36,9 +36,9 @@ public class BookController extends BaseController<Book> {
     return chapterContents;
   }
 
-  @GetMapping("/{bookId}/chapters/audio/{chapterId}")
-  public String getChapterAudio(@PathVariable String bookId, @PathVariable String chapterId) {
-    Chapter chapter = chapterService.findById(chapterId);
-    return chapter.getFile();
+  @GetMapping("/{bookId}/chapters/audio/{chapterOrder}")
+  public Chapter getChapterAudio(@PathVariable String bookId, @PathVariable Integer chapterOrder) {
+    List<Chapter> chapters = getChapter(bookId);
+    return chapters.stream().filter(chapter -> chapter.getOrder().equals(chapterOrder)).collect(Collectors.toList()).get(0);
   }
 }
