@@ -8,6 +8,7 @@ import saola.com.ngheluon.service.BookService;
 import saola.com.ngheluon.service.ChapterService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,5 +27,18 @@ public class BookController extends BaseController<Book> {
   public List<Chapter> getChapter(@PathVariable String bookId) {
     Book book = service.findById(bookId);
     return chapterService.findByBook(book);
+  }
+
+  @GetMapping("/{bookId}/chapters/text")
+  public List<String> getChapterContent(@PathVariable String bookId) {
+    List<Chapter> chapters = getChapter(bookId);
+    List<String> chapterContents = chapters.stream().map(chap -> chap.getContent()).collect(Collectors.toList());
+    return chapterContents;
+  }
+
+  @GetMapping("/{bookId}/chapters/audio/{chapterId}")
+  public String getChapterAudio(@PathVariable String bookId, @PathVariable String chapterId) {
+    Chapter chapter = chapterService.findById(chapterId);
+    return chapter.getFile();
   }
 }
