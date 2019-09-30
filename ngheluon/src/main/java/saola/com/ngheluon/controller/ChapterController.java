@@ -25,7 +25,7 @@ public class ChapterController extends BaseController<Chapter> {
     if (null == bookId || "".equals(bookId.trim())) {
       throw new IllegalArgumentException("Book ID is not valid: " + bookId);
     }
-    
+
     List<Chapter> chapters = new ArrayList<>();
     Book book = new Book();
     chapters = service.findByBook(book);
