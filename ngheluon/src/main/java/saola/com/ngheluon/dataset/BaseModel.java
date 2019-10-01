@@ -8,10 +8,13 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Data
 @MappedSuperclass
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class BaseModel implements Serializable {
   private static final long serialVersionUID = 1L;
   @Id

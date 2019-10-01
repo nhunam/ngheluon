@@ -17,7 +17,4 @@ public class Category extends BaseModel {
   private static final long serialVersionUID = 1L;
   private String title;
   private String description;
-  
-//  @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-//  private Set<CategoryBook> categoryBooks;
 }

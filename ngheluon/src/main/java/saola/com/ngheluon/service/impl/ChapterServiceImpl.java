@@ -1,11 +1,10 @@
 package saola.com.ngheluon.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import saola.com.ngheluon.dataset.Book;
 import saola.com.ngheluon.dataset.Chapter;
 import saola.com.ngheluon.repository.ChapterRepository;
 import saola.com.ngheluon.service.ChapterService;
@@ -16,7 +15,12 @@ public class ChapterServiceImpl extends BaseServiceImpl<Chapter> implements Chap
   ChapterRepository repository;
 
   @Override
-  public List<Chapter> findByBook(Book book) {
-    return repository.findByBook(book);
+  public Page<Chapter> findByBookId(String bookId, Pageable pageable) {
+    return repository.findByBookId(bookId, pageable);
+  }
+
+  @Override
+  public Chapter findByBookIdAndOrder(String bookId, Integer order) {
+    return repository.findByBookIdAndOrder(bookId, order);
   }
 }

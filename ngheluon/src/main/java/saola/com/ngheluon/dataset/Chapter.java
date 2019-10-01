@@ -24,7 +24,7 @@ public class Chapter extends BaseModel {
   private String file;
   @Column(name = "\"order\"")
   private Integer order;
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "book_id")
   private Book book;
   private String title;

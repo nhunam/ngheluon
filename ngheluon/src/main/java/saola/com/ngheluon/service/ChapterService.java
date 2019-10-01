@@ -1,10 +1,11 @@
 package saola.com.ngheluon.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import saola.com.ngheluon.dataset.Book;
 import saola.com.ngheluon.dataset.Chapter;
 
 public interface ChapterService extends BaseService<Chapter> {
-  List<Chapter> findByBook(Book book);
+  Page<Chapter> findByBookId(String bookId, Pageable pageable);
+  Chapter findByBookIdAndOrder(String bookId, Integer order);
 }
