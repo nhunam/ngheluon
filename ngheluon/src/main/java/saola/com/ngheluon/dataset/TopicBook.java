@@ -15,5 +15,6 @@ import lombok.Setter;
 @Table(name = "topic_books")
 public class TopicBook extends BaseModel {
   private static final long serialVersionUID = 1L;
-  private String name;
+  private String topic_id;
+  private String book_id;
 }

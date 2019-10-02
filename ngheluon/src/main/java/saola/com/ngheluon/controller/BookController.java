@@ -1,49 +1,43 @@
 package saola.com.ngheluon.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import saola.com.ngheluon.dataset.Book;
-import saola.com.ngheluon.service.BookService;
-
-import java.util.List;
-
-import javax.annotation.Nullable;
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import saola.com.ngheluon.dataset.Chapter;
+import saola.com.ngheluon.dto.ChapterContent;
+import saola.com.ngheluon.service.ChapterService;
 
 @RestController(value = "books")
-@RequestMapping("/api/books")
-public class BookController {
+@RequestMapping("/api/v1/minibooks")
+public class BookController extends BaseController<Book> {
   @Autowired
-  public BookService service;
+  private ChapterService chapterService;
 
-  @GetMapping()
-  public List<Book> findAll(@Nullable Pageable pageble) {
-    return service.findAll(pageble);
+  @GetMapping("/{bookId}/chapters")
+  public List<ChapterContent> getChapter(@PathVariable(value = "bookId") String bookId, Pageable pageable) {
+    Page<Chapter> chapters = chapterService.findByBookId(bookId, pageable);
+    List<ChapterContent> chapterContents = chapters.stream().map(chap -> new ChapterContent(chap, false)).collect(Collectors.toList());
+    return chapterContents;
   }
 
-  @GetMapping("/{id}")
-  public ResponseEntity<Book> find(@PathVariable String id) {
-    return ResponseEntity.ok(service.findById(id));
+  @GetMapping("/{bookId}/chapters/text")
+  public List<ChapterContent> getChapterContent(@PathVariable(value = "bookId") String bookId, Pageable pageable) {
+    Page<Chapter> chapters = chapterService.findByBookId(bookId, pageable);
+    List<ChapterContent> chapterContents = chapters.stream().map(chap -> new ChapterContent(chap)).collect(Collectors.toList());
+    return chapterContents;
   }
 
-  @PostMapping()
-  public ResponseEntity<Book> add(@Valid @RequestBody Book entity) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(service.save(entity));
-  }
-
-  @PutMapping("/{id}")
-  public ResponseEntity<Book> update(@PathVariable String id, @Valid @RequestBody Book entity) {
-    return ResponseEntity.ok(service.update(id, entity));
+  @GetMapping("/{bookId}/chapters/audio/{chapterOrder}")
+  public Chapter getChapterAudio(@PathVariable(value = "bookId") String bookId, @PathVariable(value = "chapterOrder") Integer chapterOrder) {
+    return chapterService.findByBookIdAndOrder(bookId, chapterOrder);
   }
 }
