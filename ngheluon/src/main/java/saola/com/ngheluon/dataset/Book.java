@@ -16,11 +16,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "books")
 @Table(name = "books")
-public class Book extends BaseModel {
+public class Book extends BaseModel<String> {
   private static final long serialVersionUID = 1L;
   private String title;
-  private Long time;
-  private String synopsis;
   private String helper;
   private String isbn;
 
@@ -38,4 +36,11 @@ public class Book extends BaseModel {
   private String fullDesc;
   @Column(name = "is_free")
   private Boolean isFree;
+  @Column(name = "title_en")
+  private String titleEn;
+  @Column(name = "num_of_chapter")
+  private Long numOfChapter;
+  @Column(name = "short_desc")
+  private String shortDesc;
+  private String slug;
 }

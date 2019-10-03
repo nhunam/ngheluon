@@ -8,7 +8,7 @@ import saola.com.ngheluon.dataset.Author;
 import saola.com.ngheluon.service.AuthorService;
 
 @Service
-public class AuthorServiceImpl extends BaseServiceImpl<Author> implements AuthorService {
+public class AuthorServiceImpl extends BaseServiceImpl<Author, String> implements AuthorService {
 
   @Override
   public List<Author> findByName(String name) {

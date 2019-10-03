@@ -13,8 +13,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "categories")
 @Table(name = "categories")
-public class Category extends BaseModel {
+public class Category extends BaseModel<String> {
   private static final long serialVersionUID = 1L;
   private String title;
   private String description;
+  private String icon;
+  private String slug;
+  private String thumb;
 }

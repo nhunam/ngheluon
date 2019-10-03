@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController(value = "highlights")
 @RequestMapping("/api/v1/highlights")
-public class HighlightController extends BaseController<Highlight> {
+public class HighlightController extends BaseController<Highlight, String> {
 }

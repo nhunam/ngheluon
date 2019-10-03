@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController(value = "authors")
 @RequestMapping("/api/v1/authors")
-public class AuthorController extends BaseController<Author> {
+public class AuthorController extends BaseController<Author, String> {
 }

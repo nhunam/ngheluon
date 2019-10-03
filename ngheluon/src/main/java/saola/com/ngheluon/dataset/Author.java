@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "authors")
 @Table(name = "authors")
-public class Author extends BaseModel {
+public class Author extends BaseModel<String> {
   private static final long serialVersionUID = 1L;
   private String name;
   private String description;

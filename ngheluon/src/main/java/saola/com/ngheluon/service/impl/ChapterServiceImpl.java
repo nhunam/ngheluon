@@ -10,7 +10,7 @@ import saola.com.ngheluon.repository.ChapterRepository;
 import saola.com.ngheluon.service.ChapterService;
 
 @Service
-public class ChapterServiceImpl extends BaseServiceImpl<Chapter> implements ChapterService {
+public class ChapterServiceImpl extends BaseServiceImpl<Chapter, String> implements ChapterService {
   @Autowired
   ChapterRepository repository;
 

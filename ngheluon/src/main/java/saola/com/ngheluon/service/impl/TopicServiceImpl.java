@@ -6,5 +6,5 @@ import saola.com.ngheluon.dataset.Topic;
 import saola.com.ngheluon.service.TopicService;
 
 @Service
-public class TopicServiceImpl extends BaseServiceImpl<Topic> implements TopicService {
+public class TopicServiceImpl extends BaseServiceImpl<Topic, String> implements TopicService {
 }

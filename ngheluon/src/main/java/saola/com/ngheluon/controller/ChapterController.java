@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController(value = "chapters")
 @RequestMapping("/api/v1/chapters")
-public class ChapterController extends BaseController<Chapter> {
+public class ChapterController extends BaseController<Chapter, String> {
   @Autowired
   public ChapterService service;
 

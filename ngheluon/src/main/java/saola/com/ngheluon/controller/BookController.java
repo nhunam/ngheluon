@@ -18,7 +18,7 @@ import saola.com.ngheluon.service.ChapterService;
 
 @RestController(value = "books")
 @RequestMapping("/api/v1/minibooks")
-public class BookController extends BaseController<Book> {
+public class BookController extends BaseController<Book, String> {
   @Autowired
   private ChapterService chapterService;
 

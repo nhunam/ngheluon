@@ -1,0 +1,95 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+  <changeSet author="manh.le" id="006-change-time-type">
+    <dropColumn tableName="users" columnName="created_at" />
+    <dropColumn tableName="users" columnName="updated_at" />
+    <dropColumn tableName="users" columnName="time_expired" />
+    <addColumn tableName="users">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+        <column name="time_expired" type="timestamp"/>
+    </addColumn>
+
+    <dropColumn tableName="categories" columnName="created_at" />
+    <dropColumn tableName="categories" columnName="updated_at" />
+    <addColumn tableName="categories">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+    </addColumn>
+
+    <dropColumn tableName="authors" columnName="created_at" />
+    <dropColumn tableName="authors" columnName="updated_at" />
+    <addColumn tableName="authors">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+    </addColumn>
+
+    <dropColumn tableName="topics" columnName="created_at" />
+    <dropColumn tableName="topics" columnName="updated_at" />
+    <addColumn tableName="topics">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+    </addColumn>
+
+    <dropColumn tableName="highlights" columnName="created_at" />
+    <dropColumn tableName="highlights" columnName="updated_at" />
+    <addColumn tableName="highlights">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+    </addColumn>
+
+    <dropColumn tableName="books" columnName="created_at" />
+    <dropColumn tableName="books" columnName="updated_at" />
+    <addColumn tableName="books">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+    </addColumn>
+
+    <dropColumn tableName="chapters" columnName="created_at" />
+    <dropColumn tableName="chapters" columnName="updated_at" />
+    <addColumn tableName="chapters">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+    </addColumn>
+
+    <dropColumn tableName="libraries" columnName="created_at" />
+    <dropColumn tableName="libraries" columnName="updated_at" />
+    <addColumn tableName="libraries">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+    </addColumn>
+
+    <dropColumn tableName="category_books" columnName="created_at" />
+    <dropColumn tableName="category_books" columnName="updated_at" />
+    <addColumn tableName="category_books">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+    </addColumn>
+
+    <dropColumn tableName="topic_books" columnName="created_at" />
+    <dropColumn tableName="topic_books" columnName="updated_at" />
+    <addColumn tableName="topic_books">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+    </addColumn>
+
+    <dropColumn tableName="highlight_books" columnName="created_at" />
+    <dropColumn tableName="highlight_books" columnName="updated_at" />
+    <addColumn tableName="highlight_books">
+        <column name="created_at" type="timestamp"/>
+        <column name="updated_at" type="timestamp"/>
+    </addColumn>
+
+    <modifyDataType tableName="category_books" columnName="id" newDataType="int"/>
+    <addAutoIncrement tableName="category_books" columnName="id" columnDataType="int" incrementBy="1" />
+
+    <modifyDataType tableName="topic_books" columnName="id" newDataType="int"/>
+    <addAutoIncrement tableName="topic_books" columnName="id" columnDataType="int" incrementBy="1" />
+
+    <modifyDataType tableName="highlight_books" columnName="id" newDataType="int"/>
+    <addAutoIncrement tableName="highlight_books" columnName="id" columnDataType="int" incrementBy="1" />
+  </changeSet>
+</databaseChangeLog>

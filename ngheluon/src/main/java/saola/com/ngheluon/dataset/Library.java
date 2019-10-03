@@ -13,8 +13,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "libraries")
 @Table(name = "libraries")
-public class Library extends BaseModel {
+public class Library extends BaseModel<String> {
   private static final long serialVersionUID = 1L;
   private long user_id;
   private long book_id;
+  private String status;
+  private Integer process;
 }

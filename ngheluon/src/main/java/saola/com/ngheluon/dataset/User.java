@@ -1,5 +1,8 @@
 package saola.com.ngheluon.dataset;
 
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -13,12 +16,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "users")
 @Table(name = "users")
-public class User extends BaseModel {
+public class User extends BaseModel<String> {
   private static final long serialVersionUID = 1L;
   private String phone;
-  private String name;
-  private String chargebee_id;
-  private long time_expired;
-  private String sub_id;
+  private String username;
+  @Column(name = "chargebee_id")
+  private String chargebeeId;
+  @Column(name = "time_expired")
+  private Timestamp timeExpired;
   private String token;
 }

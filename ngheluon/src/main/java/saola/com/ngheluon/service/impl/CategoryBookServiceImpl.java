@@ -6,5 +6,5 @@ import saola.com.ngheluon.dataset.CategoryBook;
 import saola.com.ngheluon.service.CategoryBookService;
 
 @Service
-public class CategoryBookServiceImpl extends BaseServiceImpl<CategoryBook> implements CategoryBookService {
+public class CategoryBookServiceImpl extends BaseServiceImpl<CategoryBook, Integer> implements CategoryBookService {
 }

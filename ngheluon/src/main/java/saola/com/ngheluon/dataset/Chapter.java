@@ -17,9 +17,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "chapters")
 @Table(name = "chapters")
-public class Chapter extends BaseModel {
+public class Chapter extends BaseModel<String> {
   private static final long serialVersionUID = 1L;
-  private String synopsis;
+  @Column(name = "short_desc")
+  private String shortDesc;
   private String content;
   private String file;
   @Column(name = "\"order\"")

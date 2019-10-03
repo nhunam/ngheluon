@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController(value = "libraries")
 @RequestMapping("/api/v1/libraries")
-public class LibraryController extends BaseController<Library> {
+public class LibraryController extends BaseController<Library, String> {
 }

@@ -1,0 +1,82 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+  <changeSet author="manh.le" id="tag-0.1">
+    <tagDatabase tag="version_0.1"/>
+  </changeSet>
+  <changeSet author="manh.le" id="005-resync-db">
+    <!-- User  -->
+    <renameColumn tableName="users" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="users" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <renameColumn tableName="users" newColumnName="active" oldColumnName="disabled" />
+    <renameColumn tableName="users" newColumnName="username" oldColumnName="name" />
+    <dropColumn tableName="users" columnName="sub_id" />
+    <!-- Categories  -->
+    <renameColumn tableName="categories" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="categories" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <renameColumn tableName="categories" newColumnName="active" oldColumnName="disabled" />
+    <addColumn tableName="categories">
+      <column name="icon" type="text" />
+      <column name="slug" type="text" />
+      <column name="thumb" type="text" />
+    </addColumn>
+    <!-- authors -->
+    <renameColumn tableName="authors" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="authors" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <renameColumn tableName="authors" newColumnName="active" oldColumnName="disabled" />
+    <!-- topics -->
+    <renameColumn tableName="topics" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="topics" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <renameColumn tableName="topics" newColumnName="active" oldColumnName="disabled" />
+    <renameColumn tableName="topics" newColumnName="title" oldColumnName="name" />
+    <addColumn tableName="topics">
+      <column name="slug" type="text" />
+      <column name="description" type="text" />
+    </addColumn>
+    <!-- highlights -->
+    <renameColumn tableName="highlights" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="highlights" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <renameColumn tableName="highlights" newColumnName="active" oldColumnName="disabled" />
+    <renameColumn tableName="highlights" newColumnName="num_of_book" oldColumnName="total_book" />
+    <addColumn tableName="highlights">
+      <column name="slug" type="text" />
+      <column name="banner" type="text" />
+    </addColumn>
+    <!-- books -->
+    <renameColumn tableName="books" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="books" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <renameColumn tableName="books" newColumnName="active" oldColumnName="disabled" />
+    <renameColumn tableName="books" newColumnName="short_desc" oldColumnName="synopsis" />
+    <renameColumn tableName="books" newColumnName="num_of_chapter" columnDataType="int" oldColumnName="time" />
+    <addColumn tableName="books">
+      <column name="title_en" type="text" />
+      <column name="slug" type="text" />
+    </addColumn>
+    <!-- Category book -->
+    <renameColumn tableName="category_books" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="category_books" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <dropColumn tableName="category_books" columnName="disabled" />
+    <!-- Chapters -->
+    <renameColumn tableName="chapters" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="chapters" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <renameColumn tableName="chapters" newColumnName="active" oldColumnName="disabled" />
+    <renameColumn tableName="chapters" newColumnName="short_desc" oldColumnName="synopsis" />
+    <!-- Topic books  -->
+    <renameColumn tableName="topic_books" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="topic_books" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <dropColumn tableName="topic_books" columnName="disabled" />
+    <!-- highlight books -->
+    <renameColumn tableName="highlight_books" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="highlight_books" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <dropColumn tableName="highlight_books" columnName="disabled" />
+    <!-- libraries -->
+    <renameColumn tableName="libraries" newColumnName="created_at" columnDataType="timestamp" oldColumnName="created" />
+    <renameColumn tableName="libraries" newColumnName="updated_at" columnDataType="timestamp" oldColumnName="updated" />
+    <renameColumn tableName="libraries" newColumnName="active" oldColumnName="disabled" />
+    <modifyDataType tableName="libraries" columnName="process" newDataType="int"/>
+    <!-- Rollback -->
+    <rollback changeSetId="tag-0.1" changeSetAuthor="manh.le" />
+  </changeSet>
+</databaseChangeLog>

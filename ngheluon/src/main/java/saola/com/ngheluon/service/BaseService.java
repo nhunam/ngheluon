@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 
 import saola.com.ngheluon.dataset.BaseModel;
 
-public interface BaseService<T extends BaseModel> {
+public interface BaseService<T extends BaseModel<ID>, ID> {
   List<T> findAll(Pageable pageRequest);
 
   T findById(String id);

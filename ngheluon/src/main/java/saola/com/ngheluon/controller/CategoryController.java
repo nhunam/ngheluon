@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController(value = "categories")
 @RequestMapping("/api/v1/categories")
-public class CategoryController extends BaseController<Category> {
+public class CategoryController extends BaseController<Category, String> {
 }

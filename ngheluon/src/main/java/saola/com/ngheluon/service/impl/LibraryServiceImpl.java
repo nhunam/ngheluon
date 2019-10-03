@@ -6,5 +6,5 @@ import saola.com.ngheluon.dataset.Library;
 import saola.com.ngheluon.service.LibraryService;
 
 @Service
-public class LibraryServiceImpl extends BaseServiceImpl<Library> implements LibraryService {
+public class LibraryServiceImpl extends BaseServiceImpl<Library, String> implements LibraryService {
 }

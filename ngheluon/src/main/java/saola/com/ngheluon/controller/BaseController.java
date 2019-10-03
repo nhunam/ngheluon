@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import saola.com.ngheluon.dataset.BaseModel;
 import saola.com.ngheluon.service.BaseService;
 
-public class BaseController<T extends BaseModel> {
+public class BaseController<T extends BaseModel<ID>, ID> {
 
   @Autowired
-  private BaseService<T> service;
+  private BaseService<T, ID> service;
 
   @GetMapping()
   public ResponseEntity<List<T>> getAll(@Nullable Pageable pageRequest) {

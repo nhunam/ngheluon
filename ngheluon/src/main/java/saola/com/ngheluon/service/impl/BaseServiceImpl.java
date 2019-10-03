@@ -14,7 +14,7 @@ import saola.com.ngheluon.repository.BaseRepository;
 import saola.com.ngheluon.service.BaseService;
 
 @Service
-public abstract class BaseServiceImpl<T extends BaseModel> implements BaseService<T> {
+public abstract class BaseServiceImpl<T extends BaseModel<ID>, ID> implements BaseService<T, ID> {
   @Autowired
   private BaseRepository<T, String> repository;
 
@@ -35,7 +35,7 @@ public abstract class BaseServiceImpl<T extends BaseModel> implements BaseServic
     Optional<T> existedOpt = repository.findById(id);
     if (null != existedOpt && !existedOpt.isEmpty() && !existedOpt.isEmpty()) {
       entity.setId(existedOpt.get().getId());
-      entity.setCreated(existedOpt.get().getCreated());
+      entity.setCreatedAt(existedOpt.get().getCreatedAt());
       return repository.save(entity);
     }
     throw new NotFoundException();

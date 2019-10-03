@@ -6,5 +6,5 @@ import saola.com.ngheluon.dataset.User;
 import saola.com.ngheluon.service.UserService;
 
 @Service
-public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<User, String> implements UserService {
 }

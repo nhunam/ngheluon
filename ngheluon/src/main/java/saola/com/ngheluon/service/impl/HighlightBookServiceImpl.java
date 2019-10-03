@@ -6,5 +6,5 @@ import saola.com.ngheluon.dataset.HighlightBook;
 import saola.com.ngheluon.service.HighlightBookService;
 
 @Service
-public class HighlightBookServiceImpl extends BaseServiceImpl<HighlightBook> implements HighlightBookService {
+public class HighlightBookServiceImpl extends BaseServiceImpl<HighlightBook, Integer> implements HighlightBookService {
 }

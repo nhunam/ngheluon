@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController(value = "topics")
 @RequestMapping("/api/v1/topics")
-public class TopicController extends BaseController<Topic> {
+public class TopicController extends BaseController<Topic, String> {
 }
