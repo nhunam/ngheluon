@@ -10,5 +10,5 @@ import java.util.UUID;
 
 public interface ChapterService extends BaseService<Chapter, UUID> {
   Page<Chapter> findByBookId(Optional<UUID> bId, Pageable pageable);
-  Chapter findByBookIdAndOrder(String bookId, Integer order);
+  Chapter findByBookIdAndOrder(Optional<UUID> bookId, Integer order);
 }

@@ -23,7 +23,7 @@ public class ChapterServiceImpl extends BaseServiceImpl<Chapter, UUID> implement
   }
 
   @Override
-  public Chapter findByBookIdAndOrder(String bookId, Integer order) {
+  public Chapter findByBookIdAndOrder(Optional<UUID> bookId, Integer order) {
     return repository.findByBookIdAndOrder(bookId, order);
   }
 }

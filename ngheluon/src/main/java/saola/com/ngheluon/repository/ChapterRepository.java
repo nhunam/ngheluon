@@ -10,5 +10,5 @@ import java.util.UUID;
 
 public interface ChapterRepository extends BaseRepository<Chapter, UUID> {
   Page<Chapter> findByBookId(Optional<UUID> bookId, Pageable pageable);
-  Chapter findByBookIdAndOrder(String bookId, Integer order);
+  Chapter findByBookIdAndOrder(Optional<UUID> bookId, Integer order);
 }

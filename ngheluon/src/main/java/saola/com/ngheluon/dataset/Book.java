@@ -1,19 +1,28 @@
 package saola.com.ngheluon.dataset;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+import java.util.Set;
 import java.util.UUID;
 
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "books")
@@ -24,7 +33,7 @@ public class Book extends BaseModel<UUID> {
   private String helper;
   private String isbn;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
   @JoinColumn(name = "author_id")
   private Author author;
   private String thumb;
@@ -45,5 +54,22 @@ public class Book extends BaseModel<UUID> {
   @Column(name = "short_desc")
   private String shortDesc;
   private String slug;
-  private Boolean active;
+
+  @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "books")
+  @JsonIgnore
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
+  private Set<Topic> topics;
+
+  @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "books")
+  @JsonIgnore
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
+  private Set<Category> categories;
+
+  @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "books")
+  @JsonIgnore
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
+  private Set<Highlight> highlights;
 }

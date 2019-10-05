@@ -1,4 +1,8 @@
 package saola.com.ngheluon.service;
 
-public interface TopicService {
+import java.util.UUID;
+
+import saola.com.ngheluon.dataset.Topic;
+
+public interface TopicService extends BaseService<Topic, UUID> {
 }
