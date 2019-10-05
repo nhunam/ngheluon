@@ -9,12 +9,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "highlights")
 @Table(name = "highlights")
-public class Highlight extends BaseModel<String> {
+public class Highlight extends BaseModel<UUID> {
   private static final long serialVersionUID = 1L;
   private String title;
   private String description;
@@ -23,4 +25,5 @@ public class Highlight extends BaseModel<String> {
   private Integer numOfBook;
   private String slug;
   private String banner;
+  private Boolean active;
 }

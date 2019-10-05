@@ -9,13 +9,16 @@ import saola.com.ngheluon.dataset.Chapter;
 import saola.com.ngheluon.repository.ChapterRepository;
 import saola.com.ngheluon.service.ChapterService;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
-public class ChapterServiceImpl extends BaseServiceImpl<Chapter, String> implements ChapterService {
+public class ChapterServiceImpl extends BaseServiceImpl<Chapter, UUID> implements ChapterService {
   @Autowired
   ChapterRepository repository;
 
   @Override
-  public Page<Chapter> findByBookId(String bookId, Pageable pageable) {
+  public Page<Chapter> findByBookId(Optional<UUID> bookId, Pageable pageable) {
     return repository.findByBookId(bookId, pageable);
   }
 

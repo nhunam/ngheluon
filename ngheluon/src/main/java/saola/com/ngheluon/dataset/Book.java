@@ -11,12 +11,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "books")
 @Table(name = "books")
-public class Book extends BaseModel<String> {
+public class Book extends BaseModel<UUID> {
   private static final long serialVersionUID = 1L;
   private String title;
   private String helper;
@@ -43,4 +45,5 @@ public class Book extends BaseModel<String> {
   @Column(name = "short_desc")
   private String shortDesc;
   private String slug;
+  private Boolean active;
 }

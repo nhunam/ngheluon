@@ -8,11 +8,11 @@ import saola.com.ngheluon.dataset.BaseModel;
 public interface BaseService<T extends BaseModel<ID>, ID> {
   List<T> findAll(Pageable pageRequest);
 
-  T findById(String id);
+  T findById(ID id);
 
   T save(T entity);
 
-  T update(String id, T entity) throws Exception;
+  T update(ID id, T entity) throws Exception;
 
-  void delete(String id);
+  void delete(ID id);
 }

@@ -12,12 +12,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "chapters")
 @Table(name = "chapters")
-public class Chapter extends BaseModel<String> {
+public class Chapter extends BaseModel<UUID> {
   private static final long serialVersionUID = 1L;
   @Column(name = "short_desc")
   private String shortDesc;

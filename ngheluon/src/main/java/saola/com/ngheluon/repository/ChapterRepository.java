@@ -5,7 +5,10 @@ import org.springframework.data.domain.Pageable;
 
 import saola.com.ngheluon.dataset.Chapter;
 
-public interface ChapterRepository extends BaseRepository<Chapter, String> {
-  Page<Chapter> findByBookId(String bookId, Pageable pageable);
+import java.util.Optional;
+import java.util.UUID;
+
+public interface ChapterRepository extends BaseRepository<Chapter, UUID> {
+  Page<Chapter> findByBookId(Optional<UUID> bookId, Pageable pageable);
   Chapter findByBookIdAndOrder(String bookId, Integer order);
 }

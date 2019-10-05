@@ -2,6 +2,8 @@ package saola.com.ngheluon.repository;
 
 import saola.com.ngheluon.dataset.Highlight;
 
-public interface HighlightRepository extends BaseRepository<Highlight, String> {
+import java.util.UUID;
+
+public interface HighlightRepository extends BaseRepository<Highlight, UUID> {
 
 }

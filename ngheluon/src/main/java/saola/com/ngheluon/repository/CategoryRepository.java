@@ -2,6 +2,8 @@ package saola.com.ngheluon.repository;
 
 import saola.com.ngheluon.dataset.Category;
 
-public interface CategoryRepository extends BaseRepository<Category, String> {
+import java.util.UUID;
+
+public interface CategoryRepository extends BaseRepository<Category, UUID> {
 
 }

@@ -11,3 +11,4 @@
 		<include file="./changelog/005-resync-db.xml" relativeToChangelogFile="true"/>
 		<include file="./changelog/006-change-time-type.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
+ 

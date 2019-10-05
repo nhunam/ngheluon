@@ -25,14 +25,15 @@ public class BaseModel<T> implements Serializable {
   private Timestamp createdAt;
   @Column(name = "updated_at")
   private Timestamp updatedAt;
-  private Boolean active;
+  //private Boolean active;
 
+@SuppressWarnings("unchecked")
   @PrePersist
   protected void prePersist() {
     long currentTime = System.currentTimeMillis();
     Timestamp curr = new Timestamp(currentTime);
-    if (id instanceof String && (null == this.id || "".equals(this.id))) {
-      this.id = (T) UUID.randomUUID().toString();
+    if (id instanceof UUID && (null == this.id || "".equals(this.id))) {
+      this.id = (T) UUID.randomUUID();
     }
     if (null == this.createdAt) {
       setCreatedAt(curr);
@@ -40,9 +41,9 @@ public class BaseModel<T> implements Serializable {
     if (null == this.updatedAt) {
       setUpdatedAt(curr);
     }
-    if (null == this.active) {
-      setActive(true);
-    }
+//    if (null == this.active) {
+//      setActive(true);
+//    }
   }
 
   @PreUpdate

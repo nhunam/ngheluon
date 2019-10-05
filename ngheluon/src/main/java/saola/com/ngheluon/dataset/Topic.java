@@ -8,15 +8,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "topics")
 @Table(name = "topics")
-public class Topic extends BaseModel<String> {
+public class Topic extends BaseModel<UUID> {
   private static final long serialVersionUID = 1L;
   private String title;
   private String slug;
   private String description;
+  private Boolean active;
 }
 

@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +17,6 @@ import lombok.Setter;
 @Table(name = "topic_books")
 public class TopicBook extends BaseModel<Integer> {
   private static final long serialVersionUID = 1L;
-  private String topic_id;
-  private String book_id;
+  private UUID topic_id;
+  private UUID book_id;
 }

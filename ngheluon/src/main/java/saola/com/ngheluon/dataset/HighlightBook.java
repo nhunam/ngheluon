@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +17,6 @@ import lombok.Setter;
 @Table(name = "highlight_books")
 public class HighlightBook extends BaseModel<Integer> {
   private static final long serialVersionUID = 1L;
-  private long highlight_id;
-  private long book_id;
+  private UUID highlight_id;
+  private UUID book_id;
 }

@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,8 +17,8 @@ import lombok.Setter;
 @Table(name = "category_books")
 public class CategoryBook extends BaseModel<Integer> {
   private static final long serialVersionUID = 1L;
-  private String category_id;
-  private String book_id;
+  private UUID category_id;
+  private UUID book_id;
   
 //  @ManyToOne
 //  @JoinColumn(name = "category_id")

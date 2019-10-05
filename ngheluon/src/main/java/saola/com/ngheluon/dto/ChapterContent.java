@@ -1,6 +1,7 @@
 package saola.com.ngheluon.dto;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +15,7 @@ import saola.com.ngheluon.dataset.Chapter;
 @Builder
 public class ChapterContent implements Serializable {
   private static final long serialVersionUID = 1L;
-  private String id;
+  private UUID id;
   private String title;
   private String content;
   private Integer order;

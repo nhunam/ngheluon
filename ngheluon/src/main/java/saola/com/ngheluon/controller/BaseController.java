@@ -1,6 +1,7 @@
 package saola.com.ngheluon.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -19,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import saola.com.ngheluon.dataset.BaseModel;
 import saola.com.ngheluon.service.BaseService;
 
-public class BaseController<T extends BaseModel<ID>, ID> {
+abstract public class BaseController<T extends BaseModel<ID>, ID> {
 
   @Autowired
   private BaseService<T, ID> service;
+
+  abstract protected Optional<ID> validateId(String id);
 
   @GetMapping()
   public ResponseEntity<List<T>> getAll(@Nullable Pageable pageRequest) {
@@ -32,7 +35,13 @@ public class BaseController<T extends BaseModel<ID>, ID> {
 
   @GetMapping("/{id}")
   public ResponseEntity<T> find(@PathVariable String id) {
-    return ResponseEntity.ok(service.findById(id));
+    var validatedId = validateId(id);
+    if (validatedId.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    } else {
+      return ResponseEntity.ok(service.findById(validatedId.get()));
+    }
+
   }
 
   @PostMapping()
@@ -42,12 +51,22 @@ public class BaseController<T extends BaseModel<ID>, ID> {
 
   @PutMapping("/{id}")
   public ResponseEntity<T> update(@PathVariable String id, @Valid @RequestBody T entity) throws Exception {
-    return ResponseEntity.ok(service.update(id, entity));
+    var validatedId = validateId(id);
+    if (validatedId.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    } else {
+      return ResponseEntity.ok(service.update(validatedId.get(), entity));
+    }
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<T> delete(@PathVariable String id) {
-    service.delete(id);
-    return ResponseEntity.ok().build();
+    var validatedId = validateId(id);
+    if (validatedId.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    } else {
+      service.delete(validatedId.get());
+      return ResponseEntity.ok().build();
+    }
   }
 }
