@@ -72,4 +72,5 @@ public class Book extends BaseModel<UUID> {
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
   private Set<Highlight> highlights;
+  private Boolean active;
 }

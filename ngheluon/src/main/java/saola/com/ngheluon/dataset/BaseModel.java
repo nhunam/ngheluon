@@ -31,7 +31,7 @@ public class BaseModel<T> implements Serializable {
   private Timestamp createdAt;
   @Column(name = "updated_at")
   private Timestamp updatedAt;
-  private Boolean active = true;
+  //private Boolean active = true;
 
   @PrePersist
   protected void prePersist() {
