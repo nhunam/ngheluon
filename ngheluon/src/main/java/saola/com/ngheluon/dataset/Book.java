@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -53,6 +54,7 @@ public class Book extends BaseModel<UUID> {
   private Long numOfChapter;
   @Column(name = "short_desc")
   private String shortDesc;
+  @NotNull
   private String slug;
 
   @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "books")
@@ -72,5 +74,5 @@ public class Book extends BaseModel<UUID> {
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
   private Set<Highlight> highlights;
-  private Boolean active;
+  private Boolean active = true;
 }

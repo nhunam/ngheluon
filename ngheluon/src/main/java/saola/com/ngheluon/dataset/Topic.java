@@ -39,5 +39,5 @@ public class Topic extends BaseModel<UUID> {
   @ToString.Exclude
   @JsonIgnore
   private Set<Book> books;
-  private Boolean active;
+  private Boolean active = true;
 }

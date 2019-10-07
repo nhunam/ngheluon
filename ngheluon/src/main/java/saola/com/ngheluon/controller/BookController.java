@@ -6,9 +6,12 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,7 @@ import saola.com.ngheluon.dataset.Chapter;
 import saola.com.ngheluon.dataset.Highlight;
 import saola.com.ngheluon.dataset.Topic;
 import saola.com.ngheluon.dto.ChapterContent;
+import saola.com.ngheluon.dto.ResponseDTO;
 import saola.com.ngheluon.service.BookService;
 import saola.com.ngheluon.service.CategoryService;
 import saola.com.ngheluon.service.ChapterService;
@@ -50,17 +54,18 @@ public class BookController extends BaseController<Book, UUID> {
   }
 
   @GetMapping("/{bookId}/chapters/text")
-  public List<ChapterContent> getChapterContent(@PathVariable(value = "bookId") String bookId, Pageable pageable) {
+  public ResponseEntity<ResponseDTO> getChapterContent(@PathVariable(value = "bookId") String bookId,
+      Pageable pageable) {
     Optional<UUID> bId = validateId(bookId);
     Page<Chapter> chapters = chapterService.findByBookId(bId, pageable);
     List<ChapterContent> chapterContents = chapters.stream().map(chap -> new ChapterContent(chap))
         .collect(Collectors.toList());
-    return chapterContents;
+    return ResponseEntity.ok(ResponseDTO.builder().body(chapterContents).build());
   }
 
   @GetMapping("/{bookId}/chapters/audio/{chapterOrder}")
   public Chapter getChapterAudio(@PathVariable(value = "bookId") String bookId,
-      @PathVariable(value = "chapterOrder") Integer chapterOrder) {
+      @Valid @PathVariable(value = "chapterOrder") Integer chapterOrder) {
     Optional<UUID> bId = validateId(bookId);
     return chapterService.findByBookIdAndOrder(bId, chapterOrder);
   }
@@ -93,11 +98,11 @@ public class BookController extends BaseController<Book, UUID> {
   }
 
   @Override
-  protected Optional<UUID> validateId(String id) {
+  protected Optional<UUID> validateId(String id) throws IllegalArgumentException {
     try {
       return Optional.of(UUID.fromString(id));
-    } catch (IllegalArgumentException e) {
-      return Optional.empty();
+    } catch (IllegalArgumentException ex) {
+      throw new IllegalArgumentException("ID: " + id + " is empty or malformed!");
     }
   }
 }

@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import saola.com.ngheluon.dataset.Book;
 import saola.com.ngheluon.dataset.Highlight;
+import saola.com.ngheluon.dto.ResponseDTO;
 import saola.com.ngheluon.service.BookService;
 import saola.com.ngheluon.service.HighlightService;
 
@@ -19,28 +20,28 @@ import java.util.UUID;
 @RestController(value = "highlights")
 @RequestMapping("/api/v1/highlights")
 public class HighlightController extends BaseController<Highlight, UUID> {
-    @Autowired
-    private HighlightService service;
-    @Autowired
-    private BookService bookService;
+  @Autowired
+  private HighlightService service;
+  @Autowired
+  private BookService bookService;
 
-    @PutMapping("/{highlightId}/books/{bookId}")
-    public ResponseEntity<Highlight> assignBook(@PathVariable(value = "bookId") String bookId,
-            @PathVariable(value = "highlightId") String highlightId) throws Exception {
-      Optional<UUID> bId = validateId(bookId);
-      Optional<UUID> tId = validateId(highlightId);
-      Highlight highlight = service.findById(tId.get());
-      Book book = bookService.findById(bId.get());
-      highlight.getBooks().add(book);
-      return update(highlightId, highlight);
-    }
+  @PutMapping("/{highlightId}/books/{bookId}")
+  public ResponseEntity<ResponseDTO> assignBook(@PathVariable(value = "bookId") String bookId,
+      @PathVariable(value = "highlightId") String highlightId) throws Exception {
+    Optional<UUID> bId = validateId(bookId);
+    Optional<UUID> tId = validateId(highlightId);
+    Highlight highlight = service.findById(tId.get());
+    Book book = bookService.findById(bId.get());
+    highlight.getBooks().add(book);
+    return update(highlightId, highlight);
+  }
 
-    @Override
-    protected Optional<UUID> validateId(String id) {
-        try {
-            return Optional.of(UUID.fromString(id));
-        } catch (IllegalArgumentException e) {
-            return Optional.empty();
-        }
+  @Override
+  protected Optional<UUID> validateId(String id) throws IllegalArgumentException {
+    try {
+      return Optional.of(UUID.fromString(id));
+    } catch (IllegalArgumentException ex) {
+      throw new IllegalArgumentException("ID: " + id + " is empty or malformed!");
     }
+  }
 }

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import saola.com.ngheluon.dataset.BaseModel;
+import saola.com.ngheluon.dto.ResponseDTO;
+import saola.com.ngheluon.exception.ResourceNotFoundException;
 import saola.com.ngheluon.service.BaseService;
 
 abstract public class BaseController<T extends BaseModel<ID>, ID> {
@@ -25,48 +27,38 @@ abstract public class BaseController<T extends BaseModel<ID>, ID> {
   @Autowired
   private BaseService<T, ID> service;
 
-  abstract protected Optional<ID> validateId(String id);
+  abstract protected Optional<ID> validateId(String id) throws IllegalArgumentException;
 
   @GetMapping()
-  public ResponseEntity<List<T>> getAll(@Nullable Pageable pageRequest) {
+  public ResponseEntity<ResponseDTO> getAll(@Nullable Pageable pageRequest) {
     List<T> paged = service.findAll(pageRequest);
-    return ResponseEntity.ok(paged);
+    return ResponseEntity.ok(ResponseDTO.builder().body(paged).build());
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<T> find(@PathVariable String id) {
-    var validatedId = validateId(id);
-    if (validatedId.isEmpty()) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    } else {
-      return ResponseEntity.ok(service.findById(validatedId.get()));
-    }
-
+  public ResponseEntity<ResponseDTO> find(@PathVariable String id) throws IllegalArgumentException {
+    ID validatedId = validateId(id).get();
+    T entity = service.findById(validatedId);
+    return ResponseEntity.ok(ResponseDTO.builder().body(entity).build());
   }
 
   @PostMapping()
-  public ResponseEntity<T> add(@Valid @RequestBody T entity) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(service.save(entity));
+  public ResponseEntity<ResponseDTO> add(@Valid @RequestBody T entity) {
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(ResponseDTO.builder().status(HttpStatus.CREATED.value()).body(service.save(entity)).build());
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<T> update(@PathVariable String id, @Valid @RequestBody T entity) throws Exception {
-    var validatedId = validateId(id);
-    if (validatedId.isEmpty()) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    } else {
-      return ResponseEntity.ok(service.update(validatedId.get(), entity));
-    }
+  public ResponseEntity<ResponseDTO> update(@PathVariable String id, @Valid @RequestBody T entity) throws Exception {
+    ID validatedId = validateId(id).get();
+    return ResponseEntity.accepted().body(ResponseDTO.builder().body(service.update(validatedId, entity)).build());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<T> delete(@PathVariable String id) {
-    var validatedId = validateId(id);
-    if (validatedId.isEmpty()) {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    } else {
-      service.delete(validatedId.get());
-      return ResponseEntity.ok().build();
-    }
+  public ResponseEntity<ResponseDTO> delete(@PathVariable String id)
+      throws IllegalArgumentException, ResourceNotFoundException {
+    ID validatedId = validateId(id).get();
+    service.delete(validatedId);
+    return ResponseEntity.accepted().body(ResponseDTO.builder().message("Deleted!").build());
   }
 }

@@ -22,11 +22,11 @@ public class ChapterController extends BaseController<Chapter, UUID> {
   public ChapterService service;
 
   @Override
-  protected Optional<UUID> validateId(String id) {
+  protected Optional<UUID> validateId(String id) throws IllegalArgumentException {
     try {
       return Optional.of(UUID.fromString(id));
-    } catch (IllegalArgumentException e) {
-      return Optional.empty();
+    } catch (IllegalArgumentException ex) {
+      throw new IllegalArgumentException("ID: " + id + " is empty or malformed!");
     }
   }
 
@@ -35,7 +35,7 @@ public class ChapterController extends BaseController<Chapter, UUID> {
     if (null == bookId || "".equals(bookId.trim())) {
       throw new IllegalArgumentException("Book ID is not valid: " + bookId);
     }
-    Optional<UUID> bId = validateId(bookId);  
+    Optional<UUID> bId = validateId(bookId);
     return service.findByBookId(bId, pageable);
   }
 }

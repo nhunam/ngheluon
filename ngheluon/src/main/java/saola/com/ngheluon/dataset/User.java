@@ -26,5 +26,5 @@ public class User extends BaseModel<UUID> {
   @Column(name = "time_expired")
   private Timestamp timeExpired;
   private String token;
-  private Boolean active;
+  private Boolean active = true;
 }

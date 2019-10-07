@@ -11,12 +11,12 @@ import java.util.UUID;
 @RestController(value = "users")
 @RequestMapping("/api/v1/users")
 public class UserController extends BaseController<User, UUID> {
-    @Override
-    protected Optional<UUID> validateId(String id) {
-        try {
-            return Optional.of(UUID.fromString(id));
-        } catch (IllegalArgumentException e) {
-            return Optional.empty();
-        }
+  @Override
+  protected Optional<UUID> validateId(String id) throws IllegalArgumentException {
+    try {
+      return Optional.of(UUID.fromString(id));
+    } catch (IllegalArgumentException ex) {
+      throw new IllegalArgumentException("ID: " + id + " is empty or malformed!");
     }
+  }
 }

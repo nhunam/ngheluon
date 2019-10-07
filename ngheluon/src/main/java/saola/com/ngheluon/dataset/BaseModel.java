@@ -24,14 +24,12 @@ public class BaseModel<T> implements Serializable {
   private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(generator = "UUID")
-  // @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   @Generated(GenerationTime.INSERT)
   private T id;
   @Column(name = "created_at")
   private Timestamp createdAt;
   @Column(name = "updated_at")
   private Timestamp updatedAt;
-  //private Boolean active = true;
 
   @PrePersist
   protected void prePersist() {
