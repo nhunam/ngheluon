@@ -1,15 +1,17 @@
 package saola.com.ngheluon.service.impl;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import saola.com.ngheluon.dataset.Book;
 import saola.com.ngheluon.repository.BookRepository;
 import saola.com.ngheluon.service.BookService;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class BookServiceImpl extends BaseServiceImpl<Book, UUID> implements BookService {
@@ -17,7 +19,7 @@ public class BookServiceImpl extends BaseServiceImpl<Book, UUID> implements Book
   BookRepository repository;
 
   @Override
-  public List<Book> findByAuthorId(Optional<UUID> authorId) {
-    return repository.findByAuthorId(authorId);
+  public Page<Book> findByAuthorId(Optional<UUID> authorId, Pageable pageable) {
+    return repository.findByAuthorId(authorId, pageable);
   }
 }

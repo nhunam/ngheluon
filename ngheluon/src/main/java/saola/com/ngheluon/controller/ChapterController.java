@@ -3,11 +3,13 @@ package saola.com.ngheluon.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import saola.com.ngheluon.dataset.Chapter;
+import saola.com.ngheluon.dto.ResponseDTO;
 import saola.com.ngheluon.service.ChapterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,12 +32,10 @@ public class ChapterController extends BaseController<Chapter, UUID> {
     }
   }
 
-  @GetMapping("/{bookId}")
-  public Page<Chapter> findByBookId(@PathVariable String bookId, Pageable pageable) {
-    if (null == bookId || "".equals(bookId.trim())) {
-      throw new IllegalArgumentException("Book ID is not valid: " + bookId);
-    }
+  @GetMapping("/books/{bookId}")
+  public ResponseEntity<ResponseDTO> findByBookId(@PathVariable String bookId, Pageable pageable) {
     Optional<UUID> bId = validateId(bookId);
-    return service.findByBookId(bId, pageable);
+    Page<Chapter> chapters = service.findByBookId(bId, pageable);
+    return ResponseEntity.ok(ResponseDTO.builder().body(chapters).build());
   }
 }

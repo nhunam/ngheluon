@@ -64,37 +64,42 @@ public class BookController extends BaseController<Book, UUID> {
   }
 
   @GetMapping("/{bookId}/chapters/audio/{chapterOrder}")
-  public Chapter getChapterAudio(@PathVariable(value = "bookId") String bookId,
+  public ResponseEntity<ResponseDTO> getChapterAudio(@PathVariable(value = "bookId") String bookId,
       @Valid @PathVariable(value = "chapterOrder") Integer chapterOrder) {
     Optional<UUID> bId = validateId(bookId);
-    return chapterService.findByBookIdAndOrder(bId, chapterOrder);
+    Chapter chapter = chapterService.findByBookIdAndOrder(bId, chapterOrder);
+    return ResponseEntity.ok(ResponseDTO.builder().body(chapter).build());
   }
 
   @GetMapping("/topics/{topicId}")
-  public Set<Book> getBookByTopic(@PathVariable(value = "topicId") String topicId, Pageable pageable) {
+  public ResponseEntity<ResponseDTO> getBookByTopic(@PathVariable(value = "topicId") String topicId, Pageable pageable) {
     Optional<UUID> bId = validateId(topicId);
     Topic topic = topicService.findById(bId.get());
-    return topic.getBooks();
+    Set<Book> books = topic.getBooks();
+    return ResponseEntity.ok(ResponseDTO.builder().body(books).build());
   }
 
   @GetMapping("/categories/{categoryId}")
-  public Set<Book> getBookByCategory(@PathVariable(value = "categoryId") String categoryId, Pageable pageable) {
+  public ResponseEntity<ResponseDTO> getBookByCategory(@PathVariable(value = "categoryId") String categoryId, Pageable pageable) {
     Optional<UUID> bId = validateId(categoryId);
     Category category = categoryService.findById(bId.get());
-    return category.getBooks();
+    Set<Book> books = category.getBooks();
+    return ResponseEntity.ok(ResponseDTO.builder().body(books).build());
   }
 
   @GetMapping("/highlights/{highlightId}")
-  public Set<Book> getBookByHighlight(@PathVariable(value = "highlightId") String highlightId, Pageable pageable) {
+  public ResponseEntity<ResponseDTO> getBookByHighlight(@PathVariable(value = "highlightId") String highlightId, Pageable pageable) {
     Optional<UUID> bId = validateId(highlightId);
     Highlight highlight = highlightService.findById(bId.get());
-    return highlight.getBooks();
+    Set<Book> books = highlight.getBooks();
+    return ResponseEntity.ok(ResponseDTO.builder().body(books).build());
   }
 
   @GetMapping("/authors/{authorId}")
-  public List<Book> getBookByAuthor(@PathVariable(value = "authorId") String authorId, Pageable pageable) {
+  public ResponseEntity<ResponseDTO> getBookByAuthor(@PathVariable(value = "authorId") String authorId, Pageable pageable) {
     Optional<UUID> aId = validateId(authorId);
-    return service.findByAuthorId(aId);
+    Page<Book> books = service.findByAuthorId(aId, pageable);
+    return ResponseEntity.ok(ResponseDTO.builder().body(books).build());
   }
 
   @Override
