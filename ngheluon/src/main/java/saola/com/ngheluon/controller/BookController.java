@@ -72,31 +72,38 @@ public class BookController extends BaseController<Book, UUID> {
   }
 
   @GetMapping("/topics/{topicId}")
-  public ResponseEntity<ResponseDTO> getBookByTopic(@PathVariable(value = "topicId") String topicId, Pageable pageable) {
+  public ResponseEntity<ResponseDTO> getBookByTopic(@PathVariable(value = "topicId") String topicId,
+      Pageable pageable) {
     Optional<UUID> bId = validateId(topicId);
     Topic topic = topicService.findById(bId.get());
-    Set<Book> books = topic.getBooks();
+    Set<Book> books = topic.getBooks().stream().skip(pageable.getOffset()).limit(pageable.getPageSize())
+        .collect(Collectors.toSet());
     return ResponseEntity.ok(ResponseDTO.builder().body(books).build());
   }
 
   @GetMapping("/categories/{categoryId}")
-  public ResponseEntity<ResponseDTO> getBookByCategory(@PathVariable(value = "categoryId") String categoryId, Pageable pageable) {
+  public ResponseEntity<ResponseDTO> getBookByCategory(@PathVariable(value = "categoryId") String categoryId,
+      Pageable pageable) {
     Optional<UUID> bId = validateId(categoryId);
     Category category = categoryService.findById(bId.get());
-    Set<Book> books = category.getBooks();
+    Set<Book> books = category.getBooks().stream().skip(pageable.getOffset()).limit(pageable.getPageSize())
+        .collect(Collectors.toSet());
     return ResponseEntity.ok(ResponseDTO.builder().body(books).build());
   }
 
   @GetMapping("/highlights/{highlightId}")
-  public ResponseEntity<ResponseDTO> getBookByHighlight(@PathVariable(value = "highlightId") String highlightId, Pageable pageable) {
+  public ResponseEntity<ResponseDTO> getBookByHighlight(@PathVariable(value = "highlightId") String highlightId,
+      Pageable pageable) {
     Optional<UUID> bId = validateId(highlightId);
     Highlight highlight = highlightService.findById(bId.get());
-    Set<Book> books = highlight.getBooks();
+    Set<Book> books = highlight.getBooks().stream().skip(pageable.getOffset()).limit(pageable.getPageSize())
+        .collect(Collectors.toSet());
     return ResponseEntity.ok(ResponseDTO.builder().body(books).build());
   }
 
   @GetMapping("/authors/{authorId}")
-  public ResponseEntity<ResponseDTO> getBookByAuthor(@PathVariable(value = "authorId") String authorId, Pageable pageable) {
+  public ResponseEntity<ResponseDTO> getBookByAuthor(@PathVariable(value = "authorId") String authorId,
+      Pageable pageable) {
     Optional<UUID> aId = validateId(authorId);
     Page<Book> books = service.findByAuthorId(aId, pageable);
     return ResponseEntity.ok(ResponseDTO.builder().body(books).build());
